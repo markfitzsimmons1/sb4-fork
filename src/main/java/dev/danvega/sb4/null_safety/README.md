@@ -1,69 +1,62 @@
-# JSpecify Null Safety Demo
+# JSpecify Null Safety
 
-This package demonstrates the JSpecify null safety annotations available in Spring Framework 7 and Spring Boot 4.
+Spring Framework 7 introduces first-class support for **JSpecify null safety annotations**, enabling compile-time null 
+checking and better IDE support for null safety across your codebase.
 
-## Key Features Demonstrated
+## Overview
 
-### Package-level Null Safety
-- `package-info.java` with `@NullMarked` annotation enables null safety checking for the entire package
-- By default, all types are considered non-null unless explicitly marked with `@Nullable`
+JSpecify provides standardized null safety annotations that work with static analysis tools. Spring Framework 7 fully 
+embraces these annotations, allowing you to mark entire packages as null-safe with `@NullMarked`.
 
-### Model with Mixed Nullability
-- `User` record shows mix of required (id, name) and optional (email, phone) fields
-- Constructor validation ensures non-null constraints are enforced
-- Helper methods like `hasEmail()` and `hasPhone()` provide safe null checks
+### Key Concepts
 
-### Repository Layer
-- Methods return `@Nullable` for single entity lookups that might not find results
-- Collection methods return non-null lists (empty if no results)
-- Defensive null checking in all method parameters
+- **Package-level `@NullMarked`**: Declare entire packages as null-safe by default
+- **`@Nullable` for exceptions**: Explicitly mark fields/parameters that can be null
+- **Compile-time safety**: Catch null pointer issues before runtime
+- **IDE integration**: Better autocomplete and warnings in your IDE
+- **Kotlin interoperability**: Works seamlessly with Kotlin's null safety
 
-### Service Layer
-- Uses `Optional<T>` for return types that might be empty
-- Explicit null parameter handling with early returns
-- Methods that accept `@Nullable` parameters handle them safely
+## Resources
 
-### Controller Layer
-- REST endpoints with proper null validation
-- Request/Response DTOs with nullable fields clearly marked
-- Appropriate HTTP status codes for null/invalid requests
+### GitHub Repository
+https://github.com/danvega/coffeeshop
 
-## API Endpoints
+### Video Tutorial
+https://youtu.be/QlGnaRoujL8
 
-- `GET /api/null-safety/users` - Get all users
-- `GET /api/null-safety/users/active` - Get active users only
-- `GET /api/null-safety/users/with-contact` - Get users with email or phone
-- `GET /api/null-safety/users/{id}` - Get user by ID
-- `GET /api/null-safety/users/by-email?email=` - Find user by email
-- `POST /api/null-safety/users` - Create new user
-- `PUT /api/null-safety/users/{id}/email` - Update user email
-- `PUT /api/null-safety/users/{id}/phone` - Update user phone
-- `DELETE /api/null-safety/users/{id}` - Delete user
-- `GET /api/null-safety/users/{id}/contact-info` - Get formatted contact info
+### Blog Post
+https://www.danvega.dev/blog/spring-boot-4-null-safety
 
-## Benefits of JSpecify
-
-1. **Compile-time Safety**: Null safety violations can be caught at build time with tools like NullAway
-2. **Clear API Contracts**: Method signatures clearly indicate which parameters and return values can be null
-3. **IDE Support**: Better IDE assistance with null-safety warnings and autocompletion
-4. **Documentation**: Code self-documents its null-safety contracts
-5. **Interoperability**: Works with Kotlin and other JVM languages that understand nullability annotations
+### Official Documentation
+- [JSpecify](https://jspecify.dev/)
+- [Spring Framework Null Safety](https://docs.spring.io/spring-framework/reference/core/null-safety.html)
 
 ## Example Usage
 
 ```java
-// Safe - all non-null parameters
-User user = userService.createUser("John Doe", "john@example.com", "+1234567890");
+// package-info.java
+@NullMarked
+package dev.danvega.demo;
 
-// Safe - nullable email explicitly handled
-Optional<User> found = userService.findUserByEmail(possiblyNullEmail);
-if (found.isPresent()) {
-    // Use found user
-}
+import org.jspecify.annotations.NullMarked;
+```
 
-// Safe - nullable return value handled
-String preferredContact = userService.getUserPreferredContact(user);
-if (preferredContact != null) {
-    // Use contact info
+```java
+// UserService.java
+public class UserService {
+
+    // Return type is non-null by default (from @NullMarked)
+    public User findById(Long id) {
+        return userRepository.findById(id)
+            .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    // Explicitly mark nullable parameters
+    public List<User> search(@Nullable String name) {
+        if (name == null) {
+            return userRepository.findAll();
+        }
+        return userRepository.findByNameContaining(name);
+    }
 }
 ```

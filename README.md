@@ -1,98 +1,42 @@
-# Spring Boot 4 Demo Project
+# Spring Boot 4 Feature Discovery
 
-A comprehensive demonstration of Spring Boot 4.0.0-M2 features using Java 24 and Maven.
+A discovery hub for exploring new features in **Spring Boot 4** and **Spring Framework 7**. 
+Each feature has its own dedicated repository with complete implementations, tutorials, and documentation.
 
-## Features Demonstrated
+## Features
 
-### 1. JSpecify Null Safety (`null_safety/`)
-JSpecify null safety annotations with package-level @NullMarked annotation.
-- **Endpoints**: `/api/users` - User CRUD operations with null safety
-- **Key Files**: `package-info.java`, `UserController.java`, `UserService.java`
+| Feature | Description | Details |
+|---------|-------------|---------|
+| [Null Safety](src/main/java/dev/danvega/sb4/null_safety/) | JSpecify annotations for compile-time null safety | Package-level `@NullMarked` annotation |
+| [HTTP Interface Clients](src/main/java/dev/danvega/sb4/http_interface_clients/) | Declarative HTTP clients with `@HttpExchange` | Replace RestTemplate/WebClient boilerplate |
+| [Bean Registration](src/main/java/dev/danvega/sb4/bean_registration/) | Programmatic bean registration | `BeanRegistrar` interface |
+| [API Versioning](src/main/java/dev/danvega/sb4/api_versioning/) | First-class API versioning support | Media type parameter versioning |
+| [JMS Client](src/main/java/dev/danvega/sb4/jms_client/) | JMS messaging with Apache Artemis | Producer/Consumer patterns |
+| [Resilience](src/main/java/dev/danvega/sb4/resilience/) | Built-in resilience without external dependencies | `@Retryable` and `@ConcurrencyLimit` |
+| [Jackson 3](src/main/java/dev/danvega/sb4/jackson3/) | Jackson 3 JSON processing support | ISO-8601 defaults, `hint()` method, JSON Views |
+| [REST Test Client](src/main/java/dev/danvega/sb4/rest_test_client/) | Unified REST API testing | One API for unit, integration, and E2E tests |
+| [Spring Data AOT](src/main/java/dev/danvega/sb4/spring_data_aot/) | Ahead-of-time repository compilation | 50-70% faster startup, compile-time validation |
+| [OpenTelemetry](src/main/java/dev/danvega/sb4/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export |
+| [Auto-Configuration](src/main/java/dev/danvega/sb4/auto_configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x |
 
-### 2. HTTP Interface Clients (`http_interface_clients/`)
-Declarative HTTP clients using @HttpExchange annotations, replacing RestTemplate/WebClient.
-- **Endpoints**: `/api/todos` - Todo operations using interface clients
-- **Key Files**: `TodoService.java` (interface), `TodoController.java`
-- **External API**: JSONPlaceholder for demo data
+## About
 
-### 3. Programmatic Bean Registration (`bean_registration/`)
-Programmatic bean registration using ImportBeanDefinitionRegistrar.
-- **Endpoints**: `/api/messages` - Message service with different implementations
-- **Key Files**: `MessageServiceRegistrar.java`, `ModernConfig.java`
-- **Services**: Email and SMS message services
+This repository serves as an index to find detailed implementations and tutorials for Spring Boot 4 features. Click on any feature above to find links to:
 
-### 4. API Versioning (`api_versioning/`)
-Content negotiation-based API versioning with different response models.
-- **Endpoints**: `/api/products` - Products with V1/V2 response formats
-- **Key Files**: `ProductController.java`, `ProductV1Response.java`, `ProductV2Response.java`
-- **Headers**: `Accept: application/vnd.api.v1+json` or `application/vnd.api.v2+json`
+- Dedicated GitHub repositories with complete code
+- Video tutorials
+- Blog posts
+- Official documentation
 
-### 5. JMS Client (`jms_client/`)
-JMS messaging using Apache Artemis with producer and consumer.
-- **Endpoints**: `/api/notifications` - Send and receive notifications
-- **Key Files**: `NotificationProducer.java`, `NotificationConsumer.java`
-- **Queue**: `notification.queue`
+## Technology
 
-### 6. Core Resilience Features (`resilience/`)
-Built-in resilience features with @Retryable and @ConcurrencyLimit annotations - no external libraries needed!
-- **Endpoints**: `/api/resilience/**` - Database operations demonstrating resilience patterns
-- **Key Files**: `DatabaseService.java`, `ResilienceDemoController.java`, `ResilienceConfig.java`
-- **Features**: Automatic retry with exponential backoff, concurrency limiting, fault tolerance
-
-## Quick Start
-
-### Prerequisites
-- Java 24
-- Maven 3.9+
-
-### Running the Application
-```bash
-./mvnw spring-boot:run
-```
-
-### Building
-```bash
-./mvnw clean compile
-./mvnw clean package
-```
-
-### Testing
-```bash
-./mvnw test
-./mvnw verify
-```
-
-## Technology Stack
-
+- **Spring Boot**: 4.0.0-M2
+- **Spring Framework**: 7
 - **Java**: 24
-- **Spring Boot**: 4.0.0-M2 (milestone release)
-- **Build Tool**: Maven with wrapper
-- **Dependencies**: Web, Actuator, RestClient, Artemis JMS, DevTools, Test
 
-## Project Structure
+## Author
 
-```
-src/main/java/dev/danvega/sb4/
-├── Application.java                    # Main Spring Boot application
-├── api_versioning/                     # Content negotiation API versioning
-├── bean_registration/                  # Programmatic bean registration
-├── http_interface_clients/             # Declarative HTTP clients
-├── jms_client/                        # JMS messaging with Artemis
-├── null_safety/                       # JSpecify null safety annotations
-└── resilience/                        # Core resilience features
-```
-
-## Key Spring Boot 4 Features
-
-- **Zero external dependencies for resilience** - @Retryable and @ConcurrencyLimit built into Spring Framework 7
-- **Enhanced HTTP clients** - @HttpExchange declarative interfaces
-- **Improved null safety** - JSpecify annotations with @NullMarked packages
-- **Flexible bean registration** - Programmatic registration with ImportBeanDefinitionRegistrar
-- **Advanced API versioning** - Content negotiation with custom media types
-- **Enterprise messaging** - JMS client with embedded Apache Artemis
-
-## Development Notes
-
-This project uses Spring Boot DevTools for hot reloading and includes Actuator endpoints for monitoring. Each feature demonstration includes comprehensive tests and follows real-world usage patterns.
-
-For detailed implementation guidance, see `CLAUDE.md`.
+**Dan Vega**
+- Website: [danvega.dev](https://www.danvega.dev)
+- YouTube: [@danvega](https://www.youtube.com/@danvega)
+- GitHub: [@danvega](https://github.com/danvega)

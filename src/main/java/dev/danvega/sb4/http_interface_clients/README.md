@@ -1,56 +1,35 @@
-# HTTP Interface Clients Demo
+# HTTP Interface Clients
 
-This demo showcases Spring Framework 7's HTTP Interface Clients feature with the new `@ImportHttpServices` annotation in Spring Boot 4.0.0-M2.
+Spring Boot 4 introduces the `@ImportHttpServices` annotation, enabling **zero-boilerplate declarative HTTP clients** 
+using `@HttpExchange` interfaces.
 
-## What's New in Spring Boot 4.0.0-M2
+## Overview
 
-HTTP Interface Clients can now be registered with **zero boilerplate** using the `@ImportHttpServices` annotation:
+HTTP Interface Clients allow you to define REST clients as simple interfaces with declarative annotations. 
+Spring Boot 4's `@ImportHttpServices` eliminates all the manual configuration previously required.
 
-```java
-@Configuration(proxyBeanMethods = false)
-@ImportHttpServices(TodoService.class)
-public class HttpClientConfig {
-    // That's it! Spring Boot automatically handles the rest
-}
-```
+### Key Concepts
 
-## HTTP Interface Definition
+- **Zero configuration**: `@ImportHttpServices` handles all bean registration automatically
+- **Declarative interfaces**: Define HTTP calls as method signatures with `@HttpExchange`
+- **Type-safe**: Full compile-time checking with Java records
+- **Clean architecture**: Separate interface definitions from implementation
 
-Define your HTTP client as a simple interface with declarative annotations:
+## Resources
 
-```java
-@HttpExchange(url = "https://jsonplaceholder.typicode.com", accept = "application/json")
-public interface TodoService {
-    @GetExchange("/todos")
-    List<Todo> getAllTodos();
+### GitHub Repository
 
-    @GetExchange("/todos/{id}")
-    Todo getTodoById(@PathVariable Long id);
+### Video Tutorial
+https://youtu.be/TEd5e4Thu7M
 
-    // Full CRUD operations supported...
-}
-```
+### Blog Post
+`
+### Official Documentation
+- [Spring Framework HTTP Interface](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client)
 
-## Key Benefits
-
-1. **Zero Configuration**: No manual bean setup required
-2. **Type Safe**: Compile-time checking with Java records
-3. **Declarative**: Clean interface definitions
-4. **Performance Optimized**: `proxyBeanMethods = false` reduces overhead
-5. **Easy Testing**: Interface can be easily mocked
-
-## Running the Demo
-
-```bash
-./mvnw spring-boot:run
-```
-
-Visit: http://localhost:8080/api/todos/
-
-## Before vs After
+## Example Usage
 
 ### Before (Manual Configuration)
-
 ```java
 @Bean
 public TodoService todoService(RestClient.Builder restClientBuilder) {
@@ -64,13 +43,26 @@ public TodoService todoService(RestClient.Builder restClientBuilder) {
 }
 ```
 
-### After (Spring Boot 4.0.0-M2)
+### After (Spring Boot 4)
 ```java
 @Configuration(proxyBeanMethods = false)
 @ImportHttpServices(TodoService.class)
 public class HttpClientConfig {
-    // That's it! 🎉
+    // That's it!
 }
 ```
 
-The `@ImportHttpServices` annotation represents a **significant reduction in configuration complexity** while maintaining all the same functionality.
+### Interface Definition
+```java
+@HttpExchange(url = "https://jsonplaceholder.typicode.com", accept = "application/json")
+public interface TodoService {
+    @GetExchange("/todos")
+    List<Todo> getAllTodos();
+
+    @GetExchange("/todos/{id}")
+    Todo getTodoById(@PathVariable Long id);
+
+    @PostExchange("/todos")
+    Todo createTodo(@RequestBody Todo todo);
+}
+```
