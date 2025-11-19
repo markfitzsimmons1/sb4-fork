@@ -1,23 +1,23 @@
 # Spring Boot 4 Feature Discovery
 
-A discovery hub for exploring new features in **Spring Boot 4** and **Spring Framework 7**. 
+A discovery hub for exploring new features in **Spring Boot 4** and **Spring Framework 7**.
 Each feature has its own dedicated repository with complete implementations, tutorials, and documentation.
 
 ## Features
 
 | Feature | Description | Details |
 |---------|-------------|---------|
-| [Null Safety](src/main/java/dev/danvega/sb4/null_safety/) | JSpecify annotations for compile-time null safety | Package-level `@NullMarked` annotation |
-| [HTTP Interface Clients](src/main/java/dev/danvega/sb4/http_interface_clients/) | Declarative HTTP clients with `@HttpExchange` | Replace RestTemplate/WebClient boilerplate |
-| [Bean Registration](src/main/java/dev/danvega/sb4/bean_registration/) | Programmatic bean registration | `BeanRegistrar` interface |
-| [API Versioning](src/main/java/dev/danvega/sb4/api_versioning/) | First-class API versioning support | Media type parameter versioning |
-| [JMS Client](src/main/java/dev/danvega/sb4/jms_client/) | JMS messaging with Apache Artemis | Producer/Consumer patterns |
-| [Resilience](src/main/java/dev/danvega/sb4/resilience/) | Built-in resilience without external dependencies | `@Retryable` and `@ConcurrencyLimit` |
-| [Jackson 3](src/main/java/dev/danvega/sb4/jackson3/) | Jackson 3 JSON processing support | ISO-8601 defaults, `hint()` method, JSON Views |
-| [REST Test Client](src/main/java/dev/danvega/sb4/rest_test_client/) | Unified REST API testing | One API for unit, integration, and E2E tests |
-| [Spring Data AOT](src/main/java/dev/danvega/sb4/spring_data_aot/) | Ahead-of-time repository compilation | 50-70% faster startup, compile-time validation |
-| [OpenTelemetry](src/main/java/dev/danvega/sb4/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export |
-| [Auto-Configuration](src/main/java/dev/danvega/sb4/auto_configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x |
+| [Null Safety](features/null-safety/) | JSpecify annotations for compile-time null safety | Package-level `@NullMarked` annotation |
+| [HTTP Interface Clients](features/http-interface-clients/) | Declarative HTTP clients with `@HttpExchange` | Replace RestTemplate/WebClient boilerplate |
+| [Bean Registration](features/bean-registration/) | Programmatic bean registration | `BeanRegistrar` interface |
+| [API Versioning](features/api-versioning/) | First-class API versioning support | Media type parameter versioning |
+| [JMS Client](features/jms-client/) | JMS messaging with Apache Artemis | Producer/Consumer patterns |
+| [Resilience](features/resilience/) | Built-in resilience without external dependencies | `@Retryable` and `@ConcurrencyLimit` |
+| [Jackson 3](features/jackson3/) | Jackson 3 JSON processing support | ISO-8601 defaults, `hint()` method, JSON Views |
+| [REST Test Client](features/rest-test-client/) | Unified REST API testing | One API for unit, integration, and E2E tests |
+| [Spring Data AOT](features/spring-data-aot/) | Ahead-of-time repository compilation | 50-70% faster startup, compile-time validation |
+| [OpenTelemetry](features/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export |
+| [Auto-Configuration](features/auto-configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x |
 
 ## About
 
