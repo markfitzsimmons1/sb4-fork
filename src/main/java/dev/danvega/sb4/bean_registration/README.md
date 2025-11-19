@@ -18,6 +18,9 @@ or other runtime factors. The new `BeanRegistrar` interface replaces the verbose
 
 ## Resources
 
+### GitHub Repository
+https://github.com/danvega/sb4-bean-registrar
+
 ### Video Tutorial
 https://youtu.be/yh760wTFL_4
 
