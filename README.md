@@ -19,11 +19,21 @@ Each feature has its own dedicated repository with complete implementations, tut
 | [OpenTelemetry](features/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export |
 | [Auto-Configuration](features/auto-configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x |
 
+## Resources
+
+- [Spring Initilialzr](https://start.spring.io)
+- [The Road to GA](https://spring.io/blog/2025/09/02/road_to_ga_introduction)
+- [Spring Framework 7 Reference Documentation](https://docs.spring.io/spring-framework/reference/index.html)
+- [Spring Boot 4 Reference Documentation](https://docs.spring.io/spring-boot/documentation.html)
+- [Spring Framework 7 Release Notes](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.0-Release-Notes)
+- [Spring Boot 4 Release Notes](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Draft-Release-Notes)
+
 ## About
 
-This repository serves as an index to find detailed implementations and tutorials for Spring Boot 4 features. Click on any feature above to find links to:
+This repository serves as an index to find detailed implementations and tutorials for Spring Boot 4 features. 
+Click on any feature above to find links to:
 
-- Dedicated GitHub repositories with complete code
+- Dedicated GitHub repositories with code
 - Video tutorials
 - Blog posts
 - Official documentation
@@ -34,3 +44,4 @@ This repository serves as an index to find detailed implementations and tutorial
 - Website: [danvega.dev](https://www.danvega.dev)
 - YouTube: [@danvega](https://www.youtube.com/@danvega)
 - GitHub: [@danvega](https://github.com/danvega)
+- Twitter: [@danvega](https://x.com/therealdanvega)
