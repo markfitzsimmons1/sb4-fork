@@ -10,7 +10,7 @@ Spring Boot 4's `@ImportHttpServices` eliminates all the manual configuration pr
 
 ### Key Concepts
 
-- **Zero configuration**: `@ImportHttpServices` handles all bean registration automatically
+- **Zero configuration**: `@ImportHttpServices` handles all bean registrations automatically
 - **Declarative interfaces**: Define HTTP calls as method signatures with `@HttpExchange`
 - **Type-safe**: Full compile-time checking with Java records
 - **Clean architecture**: Separate interface definitions from implementation
@@ -18,6 +18,7 @@ Spring Boot 4's `@ImportHttpServices` eliminates all the manual configuration pr
 ## Resources
 
 ### GitHub Repository
+https://github.com/danvega/sb4-http-interfaces
 
 ### Video Tutorial
 https://youtu.be/TEd5e4Thu7M
