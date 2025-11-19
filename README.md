@@ -28,12 +28,6 @@ This repository serves as an index to find detailed implementations and tutorial
 - Blog posts
 - Official documentation
 
-## Technology
-
-- **Spring Boot**: 4.0.0-M2
-- **Spring Framework**: 7
-- **Java**: 24
-
 ## Author
 
 **Dan Vega**
