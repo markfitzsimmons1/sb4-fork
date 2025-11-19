@@ -1,4 +1,4 @@
-# Spring Boot 4 Feature Discovery
+# What's new in Spring Boot 4
 
 A discovery hub for exploring new features in **Spring Boot 4** and **Spring Framework 7**.
 Each feature has its own dedicated repository with complete implementations, tutorials, and documentation.
