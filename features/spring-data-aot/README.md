@@ -12,11 +12,12 @@ enables GraalVM native image compilation.
 ### Key Concepts
 
 - **Compile-time query generation**: SQL generated during build, not at runtime
-- **Early error detection**: Catch typos and invalid property references before deployment
-- **50-70% faster startup**: No runtime reflection or query parsing
-- **Reduced memory**: Pre-compiled implementations are more efficient
-- **GraalVM ready**: Foundation for native image compilation
-- **Inspectable code**: View pre-generated implementations in `target/spring-aot/`
+- **Build-time validation**: Catch typos and invalid property references before deployment
+- **Faster startup**: Eliminates runtime reflection and query parsing
+- **Lower memory usage**: Pre-compiled implementations are more efficient
+- **Serverless optimized**: Particularly impactful for cold start constraints
+- **GraalVM ready**: Better native image compatibility since all code paths are known at build time
+- **Inspectable & debuggable**: View and debug pre-generated implementations in `target/spring-aot/`
 
 ## Resources
 
@@ -26,6 +27,7 @@ https://github.com/danvega/spring-data-aot
 ### Video Tutorial
 
 ### Blog Post
+https://www.danvega.dev/blog/spring-data-aot-repositories
 
 ### Official Documentation
 - [Spring Data AOT](https://docs.spring.io/spring-data/commons/reference/aot.html)
@@ -88,6 +90,27 @@ class AotRepositoryValidationTest {
 ls target/spring-aot/main/sources/
 ```
 
+## Maven Setup
+
+To enable AOT processing, add the `process-aot` goal to your `pom.xml`:
+
+```xml
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>process-aot</id>
+            <goals>
+                <goal>process-aot</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+Without this configuration, repositories fall back to runtime reflection.
+
 ## How AOT Works
 
 During `./mvnw clean package`:
@@ -96,6 +119,25 @@ During `./mvnw clean package`:
 3. Validates @Query annotations
 4. Creates pre-compiled repository implementations
 5. Generates JSON metadata for processed methods
+
+## Critical Validation Gap
+
+The AOT processor doesn't fail the build when encountering invalid methods like `findByNamme` (typo).
+Instead, it logs errors and marks problematic methods for runtime processing. The application only
+fails at startup—not ideal for catching issues early.
+
+**Solution**: Implement test-based validation that compares declared repository methods against
+AOT-generated metadata entries. This catches issues during the build/test phase rather than in production.
+The `AotRepositoryValidationTest` in the example repository demonstrates this approach.
+
+## Known Limitations
+
+Some methods fall back to runtime reflection and cannot be AOT-processed:
+- Value expressions requiring runtime evaluation
+- Certain collection return types
+- `ScrollPosition` parameters
+
+The validation test approach helps identify when methods are unexpectedly falling back to reflection.
 
 ## Benefits Summary
 
