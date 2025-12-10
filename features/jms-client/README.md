@@ -25,7 +25,7 @@ through an order management system.
 https://github.com/danvega/jms-orders
 
 ### Video Tutorial
-[Add YouTube URL]
+https://youtu.be/91xVrWlzIe4
 
 ### Blog Post
 [Add Blog URL]

@@ -25,6 +25,7 @@ enables GraalVM native image compilation.
 https://github.com/danvega/spring-data-aot
 
 ### Video Tutorial
+https://youtu.be/s_kmDbitE8s
 
 ### Blog Post
 https://www.danvega.dev/blog/spring-data-aot-repositories
