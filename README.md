@@ -15,8 +15,10 @@ Each feature has its own dedicated repository with complete implementations, tut
 | [Resilience](features/resilience/) | Built-in resilience without external dependencies | `@Retryable` and `@ConcurrencyLimit` |
 | [Jackson 3](features/jackson3/) | Jackson 3 JSON processing support | ISO-8601 defaults, `hint()` method, JSON Views |
 | [REST Test Client](features/rest-test-client/) | Unified REST API testing | One API for unit, integration, and E2E tests |
+| [MockMvcTester vs RestTestClient](features/mock-vs-rest/) | Comparing controller testing approaches | Side-by-side examples and decision guide |
 | [Spring Data AOT](features/spring-data-aot/) | Ahead-of-time repository compilation | 50-70% faster startup, compile-time validation |
 | [OpenTelemetry](features/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export |
+| [Spring Security MFA](features/spring-security-mfa/) | Multi-factor authentication with Spring Security 7 | `@EnableMultiFactorAuthentication` with OTT |
 | [Auto-Configuration](features/auto-configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x |
 
 ## Resources
