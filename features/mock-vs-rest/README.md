@@ -24,7 +24,7 @@ developer experience for controller testing.
 https://github.com/danvega/mock-vs-rest
 
 ### Video Tutorial
-[Add Video URL]
+https://youtu.be/xWcqvrpj2PM
 
 ### Blog Post
 [Add Blog URL]
