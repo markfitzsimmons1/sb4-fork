@@ -25,10 +25,10 @@ protected resources.
 https://github.com/danvega/mfa
 
 ### Video Tutorial
-[Add Video URL]
+https://youtu.be/KmNAqlaKwjw
 
 ### Blog Post
-[Add Blog URL]
+https://www.danvega.dev/blog/spring-security-7-multi-factor-authentication
 
 ### Official Documentation
 - [Spring Security MFA](https://docs.spring.io/spring-security/reference/servlet/authentication/mfa.html)
