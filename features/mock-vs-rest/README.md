@@ -27,7 +27,7 @@ https://github.com/danvega/mock-vs-rest
 https://youtu.be/xWcqvrpj2PM
 
 ### Blog Post
-[Add Blog URL]
+https://www.danvega.dev/blog/mock-vs-rest
 
 ### Official Documentation
 - [MockMvcTester Reference](https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/server-performing-requests.html)
