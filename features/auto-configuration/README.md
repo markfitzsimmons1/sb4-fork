@@ -17,6 +17,12 @@ Auto-configurations are now split into individual modules, giving you control ov
 
 ## Resources
 
+### Video Tutorial
+https://youtu.be/kTLuhE7_jGU
+
+### Blog Post
+[COMING_SOON]
+
 ### Official Documentation
 - [Spring Boot 4 Migration Guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#classic-starters)
 
