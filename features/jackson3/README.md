@@ -27,6 +27,7 @@ https://github.com/danvega/donut-shop
 https://youtu.be/4cvP_qroLH4
 
 ### Blog Post
+https://www.danvega.dev/blog/jackson-3-spring-boot-4
 
 ### Official Documentation
 - [Introducing Jackson 3 Support in Spring](https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring)
