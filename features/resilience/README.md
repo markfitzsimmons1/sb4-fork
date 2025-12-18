@@ -25,6 +25,7 @@ https://github.com/danvega/quick-bytes
 https://youtu.be/CT1wGTwOfg0
 
 ### Blog Post
+https://www.danvega.dev/blog/spring-boot-4-native-retry-support
 
 ### Official Documentation
 - [Spring Framework Resilience](https://docs.spring.io/spring-framework/reference/core/resilience.html)
