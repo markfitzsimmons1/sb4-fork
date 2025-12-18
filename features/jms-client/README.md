@@ -28,7 +28,7 @@ https://github.com/danvega/jms-orders
 https://youtu.be/91xVrWlzIe4
 
 ### Blog Post
-[Add Blog URL]
+https://www.danvega.dev/blog/jms-client
 
 ### Official Documentation
 - [Spring Boot JMS](https://docs.spring.io/spring-boot/reference/messaging/jms.html)

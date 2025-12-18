@@ -24,7 +24,8 @@ https://github.com/danvega/sb4-http-interfaces
 https://youtu.be/TEd5e4Thu7M
 
 ### Blog Post
-`
+https://www.danvega.dev/blog/http-interfaces-spring-boot-4
+
 ### Official Documentation
 - [Spring Framework HTTP Interface](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client)
 
