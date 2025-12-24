@@ -23,8 +23,10 @@ compatible backend like Grafana, Jaeger, or Zipkin.
 https://github.com/danvega/ot
 
 ### Video Tutorial
+https://www.youtube.com/watch?v=6_Y41z7OIv8
 
 ### Blog Post
+https://www.danvega.dev/blog/opentelemetry-spring-boot
 
 ### Official Documentation
 - [OpenTelemetry with Spring Boot](https://spring.io/blog/2025/11/18/opentelemetry-with-spring-boot)
