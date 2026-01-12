@@ -1,39 +1,22 @@
 # Jackson 3 Support
 
-Spring Boot 4 introduces **Jackson 3 support** with new architecture, improved defaults, and the modern `hint()` method
-for cleaner JSON view filtering.
+Spring Boot 4 integrates Jackson 3 with improved defaults, immutable configuration, and a cleaner `hint()` API
+for JSON view filtering.
 
 ## Overview
 
-Jackson 3 brings significant improvements including immutable builder-based configuration, ISO-8601 date defaults,
-unchecked exceptions for better lambda/stream integration, and new `tools.jackson` packages. Spring Boot 4 provides
-seamless integration with auto-configured `JsonMapper` beans.
+Jackson 3 modernizes configuration and defaults (ISO-8601 dates, unchecked exceptions), while Spring Boot 4
+auto-configures the new `JsonMapper` so you can adopt it with minimal changes.
 
-### Key Concepts
+## Key Concepts
 
-- **Jackson 3 architecture**: New `tools.jackson` packages with immutable builder-based config
-- **ISO-8601 defaults**: Dates serialize as ISO strings instead of numeric timestamps
-- **Unchecked exceptions**: Better lambda/stream integration
-- **`hint()` method**: Clean client-side request filtering (replaces `MappingJacksonValue`)
-- **JSON Views**: Eliminate DTO proliferation with `@JsonView` hierarchies
-- **Compatibility bridge**: Jackson 3.0.1 databind with jackson-annotations 2.20
+- **Immutable configuration**: Builder-based setup
+- **ISO-8601 defaults**: Dates serialize as strings by default
+- **Unchecked exceptions**: Better use in lambdas and streams
+- **`hint()` method**: Cleaner view filtering compared to `MappingJacksonValue`
+- **JSON Views**: Reduce DTO duplication with `@JsonView`
 
-## Resources
-
-### GitHub Repository
-https://github.com/danvega/donut-shop
-
-### Video Tutorial
-https://youtu.be/4cvP_qroLH4
-
-### Blog Post
-https://www.danvega.dev/blog/jackson-3-spring-boot-4
-
-### Official Documentation
-- [Introducing Jackson 3 Support in Spring](https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring)
-- [Jackson Project](https://github.com/FasterXML/jackson)
-
-## Example Usage
+## Example
 
 ### JSON View Hierarchy
 ```java
@@ -84,7 +67,6 @@ public class DonutController {
 
 ### Configuration Properties
 ```properties
-# application.properties
 spring.jackson.use-jackson2-defaults=false
 spring.jackson.serialization.indent-output=true
 ```
@@ -97,3 +79,11 @@ spring.jackson.serialization.indent-output=true
 | Exceptions | Checked | Unchecked |
 | Configuration | Mutable | Immutable builders |
 | Packages | `com.fasterxml` | `tools.jackson` |
+
+## Resources
+
+- GitHub: https://github.com/danvega/donut-shop
+- Video: https://youtu.be/4cvP_qroLH4
+- Blog: https://www.danvega.dev/blog/jackson-3-spring-boot-4
+- Docs: https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring
+- Jackson: https://github.com/FasterXML/jackson

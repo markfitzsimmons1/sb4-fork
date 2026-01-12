@@ -1,34 +1,25 @@
 # Modular Auto-Configuration
 
-Spring Boot 4 introduces **modular auto-configuration** - a breaking change where auto-configurations are split into separate, 
-focused modules instead of being bundled together.
+Spring Boot 4 splits auto-configuration into focused modules. This reduces footprint but requires you to include
+specific auto-config modules or starters for the features you use.
 
 ## Overview
 
-Auto-configurations are now split into individual modules, giving you control over exactly what gets included in your application. This reduces footprint but requires more explicit dependency management.
+In Spring Boot 3.x, auto-configuration lived in one large JAR. In Spring Boot 4, each capability lives in its own
+module. If a feature is missing, you add its module explicitly or use the classic compatibility artifact to restore
+3.x behavior during migration.
 
-### Key Concepts
+## Key Concepts
 
-- **Breaking change**: Features that "just worked" before now require explicit dependencies
-- **Modular approach**: Add only the auto-configuration modules you need
-- **Classic compatibility**: `spring-boot-autoconfigure-classic` maintains Spring Boot 3.x behavior
-- **Smaller footprint**: Better for microservices and cloud deployments
-- **Explicit dependencies**: Clearer dependency management
+- **Breaking change**: Some features no longer appear just because a library is on the classpath
+- **Modular approach**: Add only the modules you need
+- **Classic compatibility**: `spring-boot-autoconfigure-classic` restores legacy behavior
+- **Smaller footprint**: Less classpath scanning and fewer auto-configs
+- **Explicit dependencies**: Clear ownership of features
 
-## Resources
+## Example
 
-### Video Tutorial
-https://youtu.be/kTLuhE7_jGU
-
-### Blog Post
-https://www.danvega.dev/blog/spring-boot-4-modularization
-
-### Official Documentation
-- [Spring Boot 4 Migration Guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#classic-starters)
-
-## Migration Options
-
-### Option 1: Classic Module (Quick Migration)
+### Quick Migration (Classic Module)
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -36,9 +27,8 @@ https://www.danvega.dev/blog/spring-boot-4-modularization
 </dependency>
 ```
 
-### Option 2: Modular (Recommended for New Projects)
+### Modular Setup (Preferred)
 ```xml
-<!-- Only add what you need -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-restclient</artifactId>
@@ -50,6 +40,12 @@ https://www.danvega.dev/blog/spring-boot-4-modularization
 </dependency>
 ```
 
+### Example Failure and Fix
+```text
+Symptom: RestClient bean is missing after upgrade to Boot 4
+Fix: Add spring-boot-starter-restclient
+```
+
 ## Common Migration Issues
 
 | Missing Feature | Add This Dependency |
@@ -57,3 +53,9 @@ https://www.danvega.dev/blog/spring-boot-4-modularization
 | RestClient | `spring-boot-starter-restclient` |
 | JPA/Hibernate | `spring-boot-autoconfigure-data-jpa` |
 | Security | `spring-boot-autoconfigure-security` |
+
+## Resources
+
+- Video: https://youtu.be/kTLuhE7_jGU
+- Blog: https://www.danvega.dev/blog/spring-boot-4-modularization
+- Docs: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#classic-starters

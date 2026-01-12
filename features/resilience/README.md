@@ -1,66 +1,50 @@
 # Core Resilience Features
 
-Spring Boot 4 includes **built-in resilience features** powered by Spring Framework 7,no external libraries like 
-Spring Retry needed!
+Spring Framework 7 adds built-in resilience annotations so you can retry and limit concurrency without external
+libraries.
 
 ## Overview
 
-Spring Framework 7 brings enterprise-grade resilience patterns directly into the core framework. 
-With simple annotations, you can add retry logic and concurrency control to any method.
+`@Retryable` and `@ConcurrencyLimit` provide essential resilience patterns directly in the framework. You can
+apply them to any method and tune backoff or concurrency to protect downstream services.
 
-### Key Concepts
+## Key Concepts
 
-- **Zero external dependencies**: Built into Spring Framework 7 core
-- **`@Retryable`**: Automatically retry failed methods with configurable backoff
-- **`@ConcurrencyLimit`**: Control concurrent executions to prevent resource exhaustion
-- **Exponential backoff**: Smart delay strategies (1s, 2s, 4s, 8s...)
-- **Jitter support**: Prevent thundering herd problems
+- **Zero external dependencies**: Built into Spring Framework 7
+- **`@Retryable`**: Automatic retries with backoff and jitter
+- **`@ConcurrencyLimit`**: Cap concurrent executions
+- **Exponential backoff**: 500ms, 1s, 2s, 4s...
+- **Jitter**: Avoid thundering-herd behavior
 
-## Resources
+## Example
 
-### GitHub Repository
-https://github.com/danvega/quick-bytes
-
-### Video Tutorial
-https://youtu.be/CT1wGTwOfg0
-
-### Blog Post
-https://www.danvega.dev/blog/spring-boot-4-native-retry-support
-
-### Official Documentation
-- [Spring Framework Resilience](https://docs.spring.io/spring-framework/reference/core/resilience.html)
-
-## Example Usage
-
-### @Retryable with Exponential Backoff
+### Retry with Backoff
 ```java
 @Retryable(
     maxAttempts = 4,
     delay = 500,
-    multiplier = 2.0,  // 500ms, 1s, 2s, 4s
+    multiplier = 2.0,
     maxDelay = 5000,
-    jitter = 100       // Add randomness
+    jitter = 100
 )
 public String fetchData(String id) {
-    // Method that might fail - will retry with increasing delays
+    // Method that might fail
 }
 ```
 
-### @ConcurrencyLimit
+### Concurrency Limit
 ```java
 @ConcurrencyLimit(2)
 public String performHeavyOperation(String taskId) {
-    // Only 2 of these can run at the same time
-    // Additional requests will queue and wait
+    // Only 2 of these can run at a time
 }
 ```
 
-### Combined Patterns
+### Combined Usage
 ```java
 @ConcurrencyLimit(1)
 @Retryable(maxAttempts = 2, delay = 1000)
 public String criticalOperation(String operationId) {
-    // Single-threaded execution with automatic retry
 }
 ```
 
@@ -69,16 +53,12 @@ public String criticalOperation(String operationId) {
 @Configuration
 @EnableResilientMethods
 public class ResilienceConfig {
-    // Enables @Retryable and @ConcurrencyLimit
 }
 ```
 
-## Why This Is Special
+## Resources
 
-Unlike previous Spring Boot versions that required external libraries, **Spring Boot 4 includes these resilience features as part of the core framework**:
-
-- Smaller dependencies
-- Better integration with the Spring ecosystem
-- Consistent configuration and behavior
-- No version compatibility issues
-- Enterprise-grade resilience out of the box
+- GitHub: https://github.com/danvega/quick-bytes
+- Video: https://youtu.be/CT1wGTwOfg0
+- Blog: https://www.danvega.dev/blog/spring-boot-4-native-retry-support
+- Docs: https://docs.spring.io/spring-framework/reference/core/resilience.html

@@ -1,42 +1,25 @@
 # JMS Client API
 
-Spring Framework 6.1+ introduces the modern **JmsClient API**, providing a fluent, type-safe approach to JMS messaging
-with Apache ActiveMQ Artemis.
+Spring Framework 6.1+ introduces `JmsClient`, a fluent, type-safe alternative to `JmsTemplate`.
 
 ## Overview
 
-The new `JmsClient` API offers a modern alternative to `JmsTemplate` with a fluent, self-documenting approach,
-automatic type conversion, and flexible QoS configuration. This demo showcases 7 essential messaging patterns
-through an order management system.
+`JmsClient` simplifies JMS messaging with a readable API, automatic conversion, and flexible QoS configuration.
+This demo highlights common messaging patterns in an order-processing workflow.
 
-### Key Concepts - 7 Messaging Patterns
+## Key Concepts
 
-1. **Basic Send**: Fire-and-forget message delivery
-2. **Quality of Service (QoS)**: TTL, priority, and delivery delays
-3. **Custom Headers**: Message metadata for routing and filtering
-4. **Synchronous Receive**: Pull messages with configurable timeout
-5. **Receive and Convert**: Type-safe message retrieval
-6. **Request-Reply**: RPC-style synchronous communication
-7. **Reusable Operation Handle**: Performance optimization through preconfiguration
+1. **Basic send**: Fire-and-forget delivery
+2. **Quality of service**: Priority, TTL, delivery delay
+3. **Custom headers**: Metadata for routing and filtering
+4. **Synchronous receive**: Pull messages with timeout
+5. **Receive and convert**: Type-safe payloads
+6. **Request-reply**: RPC-style communication
+7. **Reusable operations**: Preconfigured handles for performance
 
-## Resources
+## Example
 
-### GitHub Repository
-https://github.com/danvega/jms-orders
-
-### Video Tutorial
-https://youtu.be/91xVrWlzIe4
-
-### Blog Post
-https://www.danvega.dev/blog/jms-client
-
-### Official Documentation
-- [Spring Boot JMS](https://docs.spring.io/spring-boot/reference/messaging/jms.html)
-- [Apache ActiveMQ Artemis](https://activemq.apache.org/components/artemis/)
-
-## Example Usage
-
-### JmsClient - Basic Send
+### Basic Send
 ```java
 @Service
 public class OrderMessagingService {
@@ -54,7 +37,7 @@ public class OrderMessagingService {
 }
 ```
 
-### JmsClient - Quality of Service
+### Quality of Service
 ```java
 public void sendPriorityOrder(Order order) {
     jmsClient.send("orders.queue")
@@ -64,7 +47,7 @@ public void sendPriorityOrder(Order order) {
 }
 ```
 
-### JmsClient - Request-Reply
+### Request-Reply
 ```java
 public OrderConfirmation processOrder(Order order) {
     return jmsClient.requestAndReceive("orders.queue")
@@ -73,7 +56,7 @@ public OrderConfirmation processOrder(Order order) {
 }
 ```
 
-### Consumer with @JmsListener
+### Consumer
 ```java
 @Component
 public class OrderConsumer {
@@ -85,10 +68,16 @@ public class OrderConsumer {
 }
 ```
 
-### Running with Docker
+### Run with Docker
 ```bash
-docker-compose up -d              # Start ActiveMQ Artemis
-./mvnw spring-boot:run            # Run application
+docker-compose up -d
+./mvnw spring-boot:run
 ```
 
-Access ActiveMQ Console: http://localhost:8161 (admin/admin)
+## Resources
+
+- GitHub: https://github.com/danvega/jms-orders
+- Video: https://youtu.be/91xVrWlzIe4
+- Blog: https://www.danvega.dev/blog/jms-client
+- Docs: https://docs.spring.io/spring-boot/reference/messaging/jms.html
+- Artemis: https://activemq.apache.org/components/artemis/

@@ -1,38 +1,24 @@
 # API Versioning
 
-Spring Framework 7 introduces **first-class API versioning support** with the new `version` attribute in request mappings, 
-making it easy to evolve your APIs while maintaining backward compatibility.
+Spring Framework 7 adds first-class API versioning via the `version` attribute on request mappings, so you can evolve
+endpoints without breaking older clients.
 
 ## Overview
 
-API versioning allows you to evolve your REST APIs over time while supporting older clients. 
-Spring Framework 7 provides built-in support for multiple versioning strategies including media type parameter versioning.
+API versioning keeps legacy clients working while new versions ship side-by-side. Spring 7 supports multiple
+strategies (such as media type parameters) and includes RFC-compliant deprecation headers to guide clients forward.
 
-### Key Concepts
+## Key Concepts
 
 - **Media type parameter versioning**: `Accept: application/json;version=1.0`
-- **RFC-compliant deprecation**: Deprecation, Sunset, and Link headers
-- **Version evolution**: Seamlessly add new response formats
-- **Backward compatibility**: V1 clients continue to work while V2 adds features
-- **Configurable via `WebMvcConfigurer`**: Use `configureApiVersioning()` method
+- **Versioned mappings**: `@GetMapping(version = "1.0")`
+- **Deprecation headers**: Deprecation, Sunset, Link
+- **Backward compatibility**: Serve V1 and V2 in the same controller
+- **Central configuration**: `WebMvcConfigurer#configureApiVersioning`
 
-## Resources
+## Example
 
-### GitHub Repository
-https://github.com/danvega/api-users
-
-### Video Tutorial
-https://youtu.be/qjo2tYf01xo
-
-### Blog Post
-https://www.danvega.dev/blog/spring-boot-4-api-versioning
-
-### Official Documentation
-- [Spring Framework Web MVC](https://docs.spring.io/spring-framework/reference/web/webmvc-versioning.html)
-
-## Example Usage
-
-### Controller with Versioning
+### Controller with Two Versions
 ```java
 @RestController
 @RequestMapping("/api/users")
@@ -50,7 +36,7 @@ public class UserController {
 }
 ```
 
-### Configuration
+### API Versioning Configuration
 ```java
 @Configuration
 public class ApiVersioningConfig implements WebMvcConfigurer {
@@ -61,28 +47,29 @@ public class ApiVersioningConfig implements WebMvcConfigurer {
 }
 ```
 
-### Client Usage
+### Client Requests
 ```bash
-# Version 1.0 - basic response
 curl -H "Accept: application/json;version=1.0" http://localhost:8080/api/users/1
-
-# Version 2.0 - enhanced response
 curl -H "Accept: application/json;version=2.0" http://localhost:8080/api/users/1
 ```
 
-### Version Evolution Example
-
-**V1 Response** (deprecated):
+### Response Evolution
 ```json
 {"id": 1, "name": "Dan Vega"}
 ```
 
-**V2 Response** (current):
 ```json
 {"id": 1, "firstName": "Dan", "lastName": "Vega"}
 ```
 
+## Resources
+
+- GitHub: https://github.com/danvega/api-users
+- Video: https://youtu.be/qjo2tYf01xo
+- Blog: https://www.danvega.dev/blog/spring-boot-4-api-versioning
+- Docs: https://docs.spring.io/spring-framework/reference/web/webmvc-versioning.html
+
 ## Related Features
 
-- [HTTP Interface Clients](../http_interface_clients/) - Consume versioned APIs
+- [HTTP Interface Clients](../http-interface-clients/) - Consume versioned APIs
 - [Resilience](../resilience/) - Add fault tolerance to API endpoints

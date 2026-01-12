@@ -1,41 +1,24 @@
 # MockMvcTester vs RestTestClient
 
-Spring Framework 7 provides two powerful approaches for testing REST controllers: **MockMvcTester** for server-side
-testing with AssertJ integration, and **RestTestClient** for a unified API that works across mock and real HTTP scenarios.
+Spring Framework 7 offers two modern controller testing styles: `MockMvcTester` for server-side inspection and
+`RestTestClient` for a single API across mock and real HTTP layers.
 
 ## Overview
 
-This demo compares MockMvcTester and RestTestClient side-by-side, helping you understand when to use each approach.
-Both tools are part of Spring Framework 7's modernized testing infrastructure, offering fluent APIs and improved
-developer experience for controller testing.
+This demo contrasts the two approaches so you can choose the right tool for each test. Both provide fluent
+AssertJ-style assertions and JSON path support.
 
-### Key Concepts
+## Key Concepts
 
-- **MockMvcTester**: Server-side testing with native AssertJ integration and handler inspection
-- **RestTestClient**: Unified API that works across mock containers and real HTTP servers
-- **Binding Flexibility**: RestTestClient supports multiple binding modes (controller, mockMvc, context, server)
-- **AssertJ Integration**: Both tools leverage AssertJ for fluent, readable assertions
-- **JSON Path Support**: Extract and assert on JSON response content with ease
-- **Content Type Flexibility**: RestTestClient supports any HttpMessageConverter, not just JSON
+- **MockMvcTester**: Server-side testing with handler inspection
+- **RestTestClient**: Single API for mock and real HTTP
+- **Binding options**: Controller, MockMvc, context, server
+- **AssertJ integration**: Fluent assertions out of the box
+- **Content flexibility**: Works with any HttpMessageConverter
 
-## Resources
+## Example
 
-### GitHub Repository
-https://github.com/danvega/mock-vs-rest
-
-### Video Tutorial
-https://youtu.be/xWcqvrpj2PM
-
-### Blog Post
-https://www.danvega.dev/blog/mock-vs-rest
-
-### Official Documentation
-- [MockMvcTester Reference](https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/server-performing-requests.html)
-- [RestTestClient Reference](https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/vs-end-to-end-integration-tests.html)
-
-## Example Usage
-
-### MockMvcTester - Basic GET Request
+### MockMvcTester - GET Request
 ```java
 @WebMvcTest(BookController.class)
 class BookControllerMockMvcTesterTest {
@@ -51,19 +34,10 @@ class BookControllerMockMvcTesterTest {
             .extractingPath("$.title")
             .isEqualTo("Clean Code");
     }
-
-    @Test
-    void shouldReturnAllBooks() {
-        assertThat(mockMvcTester.get().uri("/api/books"))
-            .hasStatusOk()
-            .bodyJson()
-            .extractingPath("$.length()")
-            .isEqualTo(3);
-    }
 }
 ```
 
-### RestTestClient - Basic GET Request
+### RestTestClient - GET Request
 ```java
 @WebMvcTest(BookController.class)
 class BookControllerRestTestClientTest {
@@ -86,30 +60,14 @@ class BookControllerRestTestClientTest {
             .expectBody()
             .jsonPath("$.title").isEqualTo("Clean Code");
     }
-
-    @Test
-    void shouldReturnAllBooks() {
-        client.get().uri("/api/books")
-            .exchange()
-            .expectStatus().isOk()
-            .expectBody()
-            .jsonPath("$.length()").isEqualTo(3);
-    }
 }
 ```
 
 ### RestTestClient Binding Options
 ```java
-// Unit test - bind directly to controller
 RestTestClient.bindToController(new BookController()).build();
-
-// Slice test - bind to MockMvc
 RestTestClient.bindTo(mockMvc).build();
-
-// Integration test - bind to application context
 RestTestClient.bindToApplicationContext(context).build();
-
-// E2E test - bind to running server
 RestTestClient.bindToServer("http://localhost:8080").build();
 ```
 
@@ -117,25 +75,15 @@ RestTestClient.bindToServer("http://localhost:8080").build();
 
 | Scenario | Recommended Tool |
 |----------|------------------|
-| File uploads / multipart requests | MockMvcTester |
-| Server-side handler inspection | MockMvcTester |
-| Need to inspect exceptions | MockMvcTester |
-| Multiple content types (XML, etc.) | RestTestClient |
-| Same tests for mock and real HTTP | RestTestClient |
-| Typed response body handling | RestTestClient |
-| Fine-grained HttpServletRequest access | MockMvcTester |
+| Handler inspection or exceptions | MockMvcTester |
+| File uploads / multipart | MockMvcTester |
+| Shared tests across mock and real HTTP | RestTestClient |
+| Multiple content types | RestTestClient |
 
-## Running Tests
-```bash
-# Run all tests
-./mvnw test
+## Resources
 
-# Run MockMvcTester tests only
-./mvnw test -Dtest=BookControllerMockMvcTesterTest
-
-# Run RestTestClient tests only
-./mvnw test -Dtest=BookControllerRestTestClientTest
-
-# Run application
-./mvnw spring-boot:run
-```
+- GitHub: https://github.com/danvega/mock-vs-rest
+- Video: https://youtu.be/xWcqvrpj2PM
+- Blog: https://www.danvega.dev/blog/mock-vs-rest
+- MockMvcTester: https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/server-performing-requests.html
+- RestTestClient: https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/vs-end-to-end-integration-tests.html

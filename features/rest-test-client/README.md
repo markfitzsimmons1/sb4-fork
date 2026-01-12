@@ -1,38 +1,23 @@
 # REST Test Client
 
-Spring Framework 7 introduces **RestTestClient**, a unified testing tool providing one consistent API for all types
-of REST API tests - from isolated unit tests to full end-to-end integration tests.
+Spring Framework 7 introduces `RestTestClient`, a single API for unit, slice, integration, and end-to-end REST tests.
 
 ## Overview
 
-`RestTestClient` replaces the need to switch between `MockMvc`, `WebTestClient`, and `TestRestTemplate` with a single,
-fluent API that works across all testing scenarios. It offers readable syntax and easy migration from legacy tools.
+`RestTestClient` replaces `MockMvc`, `WebTestClient`, and `TestRestTemplate` switches with one fluent API that can bind
+to a controller, MockMvc, the application context, or a live server.
 
-### Key Concepts - 5 Testing Approaches
+## Key Concepts
 
-1. **bindToController**: Isolated controller testing without Spring context
-2. **bindToMockMvc**: Controller testing with Spring MVC features (validation, security)
-3. **bindToApplicationContext**: Full application testing with real services/database
-4. **bindToServer**: Complete end-to-end testing including HTTP layer
-5. **bindToRouterFunction**: Functional/reactive endpoint testing
+1. **bindToController**: Unit testing without Spring context
+2. **bindToMockMvc**: MVC features such as validation and security
+3. **bindToApplicationContext**: Full application context testing
+4. **bindToServer**: Full HTTP stack end-to-end tests
+5. **bindToRouterFunction**: Functional endpoints
 
-## Resources
+## Example
 
-### GitHub Repository
-https://github.com/danvega/rest-test-client
-
-### Video Tutorial
-https://youtu.be/dPM8n0uNhes
-
-### Blog Post
-https://www.danvega.dev/blog/spring-framework-7-rest-test-client
-
-### Official Documentation
-- [Spring Framework Testing](https://docs.spring.io/spring-framework/reference/testing/resttestclient.html)
-
-## Example Usage
-
-### bindToController - Unit Test
+### bindToController (Unit Test)
 ```java
 @ExtendWith(MockitoExtension.class)
 class TodoControllerTest {
@@ -63,7 +48,7 @@ class TodoControllerTest {
 }
 ```
 
-### bindToMockMvc - With Spring MVC Features
+### bindToMockMvc (Slice Test)
 ```java
 @WebMvcTest(TodoController.class)
 class TodoControllerMvcTest {
@@ -88,7 +73,7 @@ class TodoControllerMvcTest {
 }
 ```
 
-### bindToServer - End-to-End Test
+### bindToServer (E2E)
 ```java
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TodoIntegrationTest {
@@ -112,7 +97,7 @@ class TodoIntegrationTest {
 }
 ```
 
-## Test Pyramid Best Practices
+## Test Pyramid Guidance
 
 | Test Type | Approach | Speed | Realism |
 |-----------|----------|-------|---------|
@@ -120,4 +105,9 @@ class TodoIntegrationTest {
 | Integration | bindToMockMvc / bindToApplicationContext | Medium | Medium |
 | E2E | bindToServer | Slow | High |
 
-Maximize unit tests for speed, balance with integration tests, minimize E2E tests for stability.
+## Resources
+
+- GitHub: https://github.com/danvega/rest-test-client
+- Video: https://youtu.be/dPM8n0uNhes
+- Blog: https://www.danvega.dev/blog/spring-framework-7-rest-test-client
+- Docs: https://docs.spring.io/spring-framework/reference/testing/resttestclient.html

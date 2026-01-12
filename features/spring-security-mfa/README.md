@@ -1,40 +1,22 @@
 # Spring Security Multi-Factor Authentication
 
-Spring Security 7 introduces **@EnableMultiFactorAuthentication**, a declarative approach to requiring
-multiple authentication factors with automatic factor routing and One-Time Token (OTT) support.
+Spring Security 7 introduces `@EnableMultiFactorAuthentication`, a declarative way to require multiple factors with
+automatic routing and one-time token (OTT) support.
 
 ## Overview
 
-The new `@EnableMultiFactorAuthentication` annotation simplifies implementing multi-factor authentication
-by declaratively specifying required authentication factors. Spring Security automatically manages the
-authentication flow, redirecting users to complete any missing factors before granting access to
-protected resources.
+The framework tracks satisfied factors per session and redirects users to complete missing factors before granting
+access. You can plug in a custom `OneTimeTokenService` for PINs or magic links.
 
-### Key Concepts
+## Key Concepts
 
-- **@EnableMultiFactorAuthentication**: Annotation to enable and configure required authentication factors
-- **FactorGrantedAuthority**: Defines available factor types (PASSWORD_AUTHORITY, OTT_AUTHORITY)
-- **One-Time Token (OTT)**: Second factor authentication using time-limited tokens
-- **Custom OneTimeTokenService**: Override default UUID tokens with custom implementations (e.g., 5-digit PINs)
-- **Automatic Factor Routing**: Spring Security redirects users to complete incomplete authentication chains
-- **Factor Completion Tracking**: Framework tracks which factors have been satisfied per session
+- **`@EnableMultiFactorAuthentication`**: Enable required factors
+- **FactorGrantedAuthority**: `PASSWORD_AUTHORITY`, `OTT_AUTHORITY`
+- **One-Time Token (OTT)**: Time-limited second factor
+- **Custom token service**: Swap UUIDs for PINs or custom flows
+- **Automatic routing**: Spring Security handles factor completion
 
-## Resources
-
-### GitHub Repository
-https://github.com/danvega/mfa
-
-### Video Tutorial
-https://youtu.be/KmNAqlaKwjw
-
-### Blog Post
-https://www.danvega.dev/blog/spring-security-7-multi-factor-authentication
-
-### Official Documentation
-- [Spring Security MFA](https://docs.spring.io/spring-security/reference/servlet/authentication/mfa.html)
-- [One-Time Token Authentication](https://docs.spring.io/spring-security/reference/servlet/authentication/onetimetoken.html)
-
-## Example Usage
+## Example
 
 ### Security Configuration
 ```java
@@ -86,14 +68,12 @@ public class CustomOneTimeTokenService implements OneTimeTokenService {
 
     @Override
     public OneTimeToken generate(GenerateOneTimeTokenRequest request) {
-        // Generate 5-digit PIN instead of UUID
         String token = String.format("%05d", new Random().nextInt(100000));
         Instant expiresAt = Instant.now().plus(5, ChronoUnit.MINUTES);
 
         OneTimeToken ott = new DefaultOneTimeToken(token, request.getUsername(), expiresAt);
         tokens.put(token, ott);
 
-        // Log the magic link for demo purposes
         System.out.println("OTT Login Link: http://localhost:8080/login/ott?token=" + token);
 
         return ott;
@@ -110,23 +90,10 @@ public class CustomOneTimeTokenService implements OneTimeTokenService {
 }
 ```
 
-## Getting Started
+## Resources
 
-### Running the Application
-```bash
-./mvnw spring-boot:run
-```
-
-### Test Credentials
-| Username | Password | Roles |
-|----------|----------|-------|
-| user | password | USER |
-| admin | password | ADMIN, USER |
-
-### Authentication Flow
-1. Navigate to `http://localhost:8080/admin`
-2. Enter admin credentials (admin/password)
-3. Check console output for the PIN-based magic link
-4. Complete OTT verification at `/login/ott?token=YOUR_PIN`
-
-Spring Security automatically redirects users through each required factor until all are satisfied.
+- GitHub: https://github.com/danvega/mfa
+- Video: https://youtu.be/KmNAqlaKwjw
+- Blog: https://www.danvega.dev/blog/spring-security-7-multi-factor-authentication
+- MFA docs: https://docs.spring.io/spring-security/reference/servlet/authentication/mfa.html
+- OTT docs: https://docs.spring.io/spring-security/reference/servlet/authentication/onetimetoken.html

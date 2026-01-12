@@ -1,36 +1,21 @@
 # Programmatic Bean Registration
 
-Spring Framework 7 introduces the `BeanRegistrar` interface, providing a **clean and simple way to register 
-beans programmatically** at runtime.
+Spring Framework 7 introduces `BeanRegistrar`, a concise API for registering beans programmatically at runtime.
 
 ## Overview
 
-Programmatic bean registration allows you to dynamically register beans based on configuration, environment conditions, 
-or other runtime factors. The new `BeanRegistrar` interface replaces the verbose `BeanDefinitionRegistryPostProcessor` approach.
+`BeanRegistrar` replaces the verbose `BeanDefinitionRegistryPostProcessor` pattern with a cleaner, type-safe
+registration API. It works with AOT and lets you vary beans based on environment or configuration.
 
-### Key Concepts
+## Key Concepts
 
-- **Runtime flexibility**: Register different beans based on conditions
-- **Modern API**: Lambda expressions and method chaining
-- **Type-safe**: Full IDE support and compile-time checking
-- **AOT compatible**: Works with GraalVM native images
-- **Environment access**: Read properties to make registration decisions
+- **Runtime flexibility**: Register beans based on properties or environment
+- **Modern API**: Lambda-friendly registration
+- **Type-safe**: Compile-time checking and IDE support
+- **AOT compatible**: Works with native images
+- **Environment access**: Read config to drive registrations
 
-## Resources
-
-### GitHub Repository
-https://github.com/danvega/sb4-bean-registrar
-
-### Video Tutorial
-https://youtu.be/yh760wTFL_4
-
-### Blog Post
-https://www.danvega.dev/blog/programmatic-bean-registration
-
-### Official Documentation
-- [Programmatic Bean Registration](https://docs.spring.io/spring-framework/reference/core/beans/java/programmatic-bean-registration.html)
-
-## Example Usage
+## Example
 
 ### BeanRegistrar Implementation
 ```java
@@ -51,12 +36,11 @@ public class MessageServiceRegistrar implements BeanRegistrar {
 }
 ```
 
-### Configuration
+### Import the Registrar
 ```java
 @Configuration
 @Import(MessageServiceRegistrar.class)
 public class ModernConfig {
-    // Other bean definitions here
 }
 ```
 
@@ -67,3 +51,10 @@ public class ModernConfig {
 | `@Component` / `@Bean` | Low | Low |
 | `BeanDefinitionRegistryPostProcessor` | High | High |
 | **BeanRegistrar** (Spring 7) | Low | High |
+
+## Resources
+
+- GitHub: https://github.com/danvega/sb4-bean-registrar
+- Video: https://youtu.be/yh760wTFL_4
+- Blog: https://www.danvega.dev/blog/programmatic-bean-registration
+- Docs: https://docs.spring.io/spring-framework/reference/core/beans/java/programmatic-bean-registration.html

@@ -5,21 +5,27 @@ Each feature has its own dedicated repository with complete implementations, tut
 
 ## Features
 
-| Feature | Description | Details |
-|---------|-------------|---------|
-| [Null Safety](features/null-safety/) | JSpecify annotations for compile-time null safety | Package-level `@NullMarked` annotation |
-| [HTTP Interface Clients](features/http-interface-clients/) | Declarative HTTP clients with `@HttpExchange` | Replace RestTemplate/WebClient boilerplate |
-| [Bean Registration](features/bean-registration/) | Programmatic bean registration | `BeanRegistrar` interface |
-| [API Versioning](features/api-versioning/) | First-class API versioning support | Media type parameter versioning |
-| [JMS Client](features/jms-client/) | JMS messaging with Apache Artemis | Producer/Consumer patterns |
-| [Resilience](features/resilience/) | Built-in resilience without external dependencies | `@Retryable` and `@ConcurrencyLimit` |
-| [Jackson 3](features/jackson3/) | Jackson 3 JSON processing support | ISO-8601 defaults, `hint()` method, JSON Views |
-| [REST Test Client](features/rest-test-client/) | Unified REST API testing | One API for unit, integration, and E2E tests |
-| [MockMvcTester vs RestTestClient](features/mock-vs-rest/) | Comparing controller testing approaches | Side-by-side examples and decision guide |
-| [Spring Data AOT](features/spring-data-aot/) | Ahead-of-time repository compilation | 50-70% faster startup, compile-time validation |
-| [OpenTelemetry](features/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export |
-| [Spring Security MFA](features/spring-security-mfa/) | Multi-factor authentication with Spring Security 7 | `@EnableMultiFactorAuthentication` with OTT |
-| [Auto-Configuration](features/auto-configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x |
+| Feature | Description | Details | Example |
+|---------|-------------|---------|---------|
+| [Null Safety](features/null-safety/) | JSpecify annotations for compile-time null safety | Package-level `@NullMarked` annotation | [View example](features/null-safety/README.md#example) |
+| [HTTP Interface Clients](features/http-interface-clients/) | Declarative HTTP clients with `@HttpExchange` | Replace RestTemplate/WebClient boilerplate | [View example](features/http-interface-clients/README.md#example) |
+| [Bean Registration](features/bean-registration/) | Programmatic bean registration | `BeanRegistrar` interface | [View example](features/bean-registration/README.md#example) |
+| [API Versioning](features/api-versioning/) | First-class API versioning support | Media type parameter versioning | [View example](features/api-versioning/README.md#example) |
+| [JMS Client](features/jms-client/) | JMS messaging with Apache Artemis | Producer/Consumer patterns | [View example](features/jms-client/README.md#example) |
+| [Resilience](features/resilience/) | Built-in resilience without external dependencies | `@Retryable` and `@ConcurrencyLimit` | [View example](features/resilience/README.md#example) |
+| [Jackson 3](features/jackson3/) | Jackson 3 JSON processing support | ISO-8601 defaults, `hint()` method, JSON Views | [View example](features/jackson3/README.md#example) |
+| [REST Test Client](features/rest-test-client/) | Unified REST API testing | One API for unit, integration, and E2E tests | [View example](features/rest-test-client/README.md#example) |
+| [MockMvcTester vs RestTestClient](features/mock-vs-rest/) | Comparing controller testing approaches | Side-by-side examples and decision guide | [View example](features/mock-vs-rest/README.md#example) |
+| [Spring Data AOT](features/spring-data-aot/) | Ahead-of-time repository compilation | 50-70% faster startup, compile-time validation | [View example](features/spring-data-aot/README.md#example) |
+| [OpenTelemetry](features/otel/) | Official observability starter | Auto-instrumentation, log correlation, OTLP export | [View example](features/otel/README.md#example) |
+| [Spring Security MFA](features/spring-security-mfa/) | Multi-factor authentication with Spring Security 7 | `@EnableMultiFactorAuthentication` with OTT | [View example](features/spring-security-mfa/README.md#example) |
+| [Auto-Configuration](features/auto-configuration/) | Modular auto-configuration changes | Migration from Spring Boot 3.x | [View example](features/auto-configuration/README.md#example) |
+
+## Mock App
+
+A compact demo app that showcases several Spring Boot 4 and Spring Framework 7 changes together.
+
+- [SB4 Mock App](mock-app/) - API versioning, HTTP interface clients, null-safety, resilience, and RestTestClient
 
 ## Resources
 

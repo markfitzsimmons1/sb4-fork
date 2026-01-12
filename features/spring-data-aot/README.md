@@ -1,45 +1,28 @@
 # Spring Data AOT Repositories
 
-Spring Data AOT moves query processing from runtime to compile-time, delivering **50-70% faster startup**,
-reduced memory usage, and catching repository errors before production.
+Spring Data AOT moves query parsing and repository generation to build time for faster startup and earlier error
+feedback.
 
 ## Overview
 
-Spring Data Ahead-of-Time (AOT) compilation eliminates runtime reflection and query parsing by pre-generating
-repository implementations during the build. This provides faster startup, better error detection, and
-enables GraalVM native image compilation.
+Ahead-of-Time processing generates repository implementations during the build, reducing reflection and improving
+cold-start performance. It also surfaces invalid repository methods sooner.
 
-### Key Concepts
+## Key Concepts
 
-- **Compile-time query generation**: SQL generated during build, not at runtime
-- **Build-time validation**: Catch typos and invalid property references before deployment
-- **Faster startup**: Eliminates runtime reflection and query parsing
-- **Lower memory usage**: Pre-compiled implementations are more efficient
-- **Serverless optimized**: Particularly impactful for cold start constraints
-- **GraalVM ready**: Better native image compatibility since all code paths are known at build time
-- **Inspectable & debuggable**: View and debug pre-generated implementations in `target/spring-aot/`
+- **Compile-time query generation**: SQL produced during the build
+- **Build-time validation**: Catch invalid property names early
+- **Faster startup**: Less reflection and parsing at runtime
+- **Lower memory usage**: Pre-compiled implementations
+- **Native image ready**: Predictable code paths for GraalVM
+- **Inspectable output**: Generated sources in `target/spring-aot/`
 
-## Resources
+## Example
 
-### GitHub Repository
-https://github.com/danvega/spring-data-aot
-
-### Video Tutorial
-https://youtu.be/s_kmDbitE8s
-
-### Blog Post
-https://www.danvega.dev/blog/spring-data-aot-repositories
-
-### Official Documentation
-- [Spring Data AOT](https://docs.spring.io/spring-data/commons/reference/aot.html)
-
-## Example Usage
-
-### Repository with Derived Queries
+### Derived Queries
 ```java
 public interface CoffeeRepository extends CrudRepository<Coffee, Long> {
 
-    // AOT generates SQL at compile-time
     List<Coffee> findByNameContainingIgnoreCase(String name);
 
     List<Coffee> findByRoastLevelAndOrigin(String roastLevel, String origin);
@@ -49,7 +32,7 @@ public interface CoffeeRepository extends CrudRepository<Coffee, Long> {
 }
 ```
 
-### Repository with Temporal Queries
+### Complex Query
 ```java
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
@@ -65,7 +48,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 }
 ```
 
-### AOT Validation Test
+### Validation Test (Recommended)
 ```java
 @SpringBootTest
 class AotRepositoryValidationTest {
@@ -75,25 +58,13 @@ class AotRepositoryValidationTest {
 
     @Test
     void validateAllRepositoryMethodsAreAotProcessed() {
-        // Compares method signatures against AOT-generated metadata
-        // Fails build if methods are skipped by AOT
-        // Provides clear error messages for problematic methods
+        // Compare repository methods against AOT metadata
+        // Fail the build when a method falls back to runtime processing
     }
 }
 ```
 
-### Build with AOT Processing
-```bash
-# AOT processing happens during package
-./mvnw clean package
-
-# View generated code
-ls target/spring-aot/main/sources/
-```
-
 ## Maven Setup
-
-To enable AOT processing, add the `process-aot` goal to your `pom.xml`:
 
 ```xml
 <plugin>
@@ -110,42 +81,21 @@ To enable AOT processing, add the `process-aot` goal to your `pom.xml`:
 </plugin>
 ```
 
-Without this configuration, repositories fall back to runtime reflection.
+## Build Output
 
-## How AOT Works
+```bash
+./mvnw clean package
+ls target/spring-aot/main/sources/
+```
 
-During `./mvnw clean package`:
-1. AOT processor scans repository interfaces
-2. Parses method names to generate SQL
-3. Validates @Query annotations
-4. Creates pre-compiled repository implementations
-5. Generates JSON metadata for processed methods
+## Known Validation Gap
 
-## Critical Validation Gap
+The AOT processor logs errors for invalid methods (for example `findByNamme`) but does not fail the build. A
+validation test that compares repository methods against AOT metadata closes this gap.
 
-The AOT processor doesn't fail the build when encountering invalid methods like `findByNamme` (typo).
-Instead, it logs errors and marks problematic methods for runtime processing. The application only
-fails at startup—not ideal for catching issues early.
+## Resources
 
-**Solution**: Implement test-based validation that compares declared repository methods against
-AOT-generated metadata entries. This catches issues during the build/test phase rather than in production.
-The `AotRepositoryValidationTest` in the example repository demonstrates this approach.
-
-## Known Limitations
-
-Some methods fall back to runtime reflection and cannot be AOT-processed:
-- Value expressions requiring runtime evaluation
-- Certain collection return types
-- `ScrollPosition` parameters
-
-The validation test approach helps identify when methods are unexpectedly falling back to reflection.
-
-## Benefits Summary
-
-| Aspect | Runtime (Traditional) | AOT (Compile-time) |
-|--------|----------------------|-------------------|
-| Query parsing | Every startup | Once at build |
-| Error detection | Runtime exceptions | Build failures |
-| Startup time | Slower | 50-70% faster |
-| Memory usage | Higher (reflection) | Lower (pre-compiled) |
-| Native images | Complex setup | Ready to go |
+- GitHub: https://github.com/danvega/spring-data-aot
+- Video: https://youtu.be/s_kmDbitE8s
+- Blog: https://www.danvega.dev/blog/spring-data-aot-repositories
+- Docs: https://docs.spring.io/spring-data/commons/reference/aot.html

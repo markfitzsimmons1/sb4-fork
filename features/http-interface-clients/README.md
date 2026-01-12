@@ -1,35 +1,21 @@
 # HTTP Interface Clients
 
-Spring Boot 4 introduces the `@ImportHttpServices` annotation, enabling **zero-boilerplate declarative HTTP clients** 
-using `@HttpExchange` interfaces.
+Spring Boot 4 adds `@ImportHttpServices`, enabling zero-boilerplate declarative HTTP clients built from
+`@HttpExchange` interfaces.
 
 ## Overview
 
-HTTP Interface Clients allow you to define REST clients as simple interfaces with declarative annotations. 
-Spring Boot 4's `@ImportHttpServices` eliminates all the manual configuration previously required.
+HTTP Interface Clients let you model outbound HTTP calls as interfaces. Spring generates the client and wires it
+automatically so you can focus on contracts, not plumbing.
 
-### Key Concepts
+## Key Concepts
 
-- **Zero configuration**: `@ImportHttpServices` handles all bean registrations automatically
-- **Declarative interfaces**: Define HTTP calls as method signatures with `@HttpExchange`
-- **Type-safe**: Full compile-time checking with Java records
-- **Clean architecture**: Separate interface definitions from implementation
+- **Zero configuration**: `@ImportHttpServices` registers all clients
+- **Declarative interfaces**: Define HTTP calls with `@HttpExchange`
+- **Type-safe**: Compile-time signatures with records and DTOs
+- **Clean architecture**: Keep interfaces near your domain or adapter layer
 
-## Resources
-
-### GitHub Repository
-https://github.com/danvega/sb4-http-interfaces
-
-### Video Tutorial
-https://youtu.be/TEd5e4Thu7M
-
-### Blog Post
-https://www.danvega.dev/blog/http-interfaces-spring-boot-4
-
-### Official Documentation
-- [Spring Framework HTTP Interface](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client)
-
-## Example Usage
+## Example
 
 ### Before (Manual Configuration)
 ```java
@@ -50,7 +36,6 @@ public TodoService todoService(RestClient.Builder restClientBuilder) {
 @Configuration(proxyBeanMethods = false)
 @ImportHttpServices(TodoService.class)
 public class HttpClientConfig {
-    // That's it!
 }
 ```
 
@@ -68,3 +53,10 @@ public interface TodoService {
     Todo createTodo(@RequestBody Todo todo);
 }
 ```
+
+## Resources
+
+- GitHub: https://github.com/danvega/sb4-http-interfaces
+- Video: https://youtu.be/TEd5e4Thu7M
+- Blog: https://www.danvega.dev/blog/http-interfaces-spring-boot-4
+- Docs: https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client
