@@ -82,7 +82,7 @@ RestTestClient.bindToServer("http://localhost:8080").build();
 
 ## Resources
 
-- GitHub: https://github.com/markfitzsimmons1/mock-vs-rest
+- GitHub: https://github.com/markfitzsimmons1/mock-vs-rest n
 - Video: https://youtu.be/xWcqvrpj2PM
 - Blog: https://www.danvega.dev/blog/mock-vs-rest
 - MockMvcTester: https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/server-performing-requests.html
