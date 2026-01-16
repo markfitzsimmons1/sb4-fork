@@ -54,7 +54,7 @@ public class ModernConfig {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/sb4-bean-registrar
+- GitHub: https://github.com/markfitzsimmons1/sb4-bean-registrar
 - Video: https://youtu.be/yh760wTFL_4
 - Blog: https://www.danvega.dev/blog/programmatic-bean-registration
 - Docs: https://docs.spring.io/spring-framework/reference/core/beans/java/programmatic-bean-registration.html

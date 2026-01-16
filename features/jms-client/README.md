@@ -76,7 +76,7 @@ docker-compose up -d
 
 ## Resources
 
-- GitHub: https://github.com/danvega/jms-orders
+- GitHub: https://github.com/markfitzsimmons1/jms-orders
 - Video: https://youtu.be/91xVrWlzIe4
 - Blog: https://www.danvega.dev/blog/jms-client
 - Docs: https://docs.spring.io/spring-boot/reference/messaging/jms.html

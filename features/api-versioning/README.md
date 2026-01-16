@@ -64,7 +64,7 @@ curl -H "Accept: application/json;version=2.0" http://localhost:8080/api/users/1
 
 ## Resources
 
-- GitHub: https://github.com/danvega/api-users
+- GitHub: https://github.com/markfitzsimmons1/api-users
 - Video: https://youtu.be/qjo2tYf01xo
 - Blog: https://www.danvega.dev/blog/spring-boot-4-api-versioning
 - Docs: https://docs.spring.io/spring-framework/reference/web/webmvc-versioning.html

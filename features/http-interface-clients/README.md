@@ -56,7 +56,7 @@ public interface TodoService {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/sb4-http-interfaces
+- GitHub: https://github.com/markfitzsimmons1/sb4-http-interfaces
 - Video: https://youtu.be/TEd5e4Thu7M
 - Blog: https://www.danvega.dev/blog/http-interfaces-spring-boot-4
 - Docs: https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client

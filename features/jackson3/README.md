@@ -82,7 +82,7 @@ spring.jackson.serialization.indent-output=true
 
 ## Resources
 
-- GitHub: https://github.com/danvega/donut-shop
+- GitHub: https://github.com/markfitzsimmons1/donut-shop
 - Video: https://youtu.be/4cvP_qroLH4
 - Blog: https://www.danvega.dev/blog/jackson-3-spring-boot-4
 - Docs: https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring

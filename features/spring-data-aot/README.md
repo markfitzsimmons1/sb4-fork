@@ -95,7 +95,7 @@ validation test that compares repository methods against AOT metadata closes thi
 
 ## Resources
 
-- GitHub: https://github.com/danvega/spring-data-aot
+- GitHub: https://github.com/markfitzsimmons1/spring-data-aot
 - Video: https://youtu.be/s_kmDbitE8s
 - Blog: https://www.danvega.dev/blog/spring-data-aot-repositories
 - Docs: https://docs.spring.io/spring-data/commons/reference/aot.html

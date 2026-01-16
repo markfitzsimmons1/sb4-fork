@@ -107,7 +107,7 @@ class TodoIntegrationTest {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/rest-test-client
+- GitHub: https://github.com/markfitzsimmons1/rest-test-client
 - Video: https://youtu.be/dPM8n0uNhes
 - Blog: https://www.danvega.dev/blog/spring-framework-7-rest-test-client
 - Docs: https://docs.spring.io/spring-framework/reference/testing/resttestclient.html

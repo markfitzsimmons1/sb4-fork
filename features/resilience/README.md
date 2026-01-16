@@ -58,7 +58,7 @@ public class ResilienceConfig {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/quick-bytes
+- GitHub: https://github.com/markfitzsimmons1/quick-bytes
 - Video: https://youtu.be/CT1wGTwOfg0
 - Blog: https://www.danvega.dev/blog/spring-boot-4-native-retry-support
 - Docs: https://docs.spring.io/spring-framework/reference/core/resilience.html

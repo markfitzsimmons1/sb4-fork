@@ -92,7 +92,7 @@ public class CustomOneTimeTokenService implements OneTimeTokenService {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/mfa
+- GitHub: https://github.com/markfitzsimmons1/mfa
 - Video: https://youtu.be/KmNAqlaKwjw
 - Blog: https://www.danvega.dev/blog/spring-security-7-multi-factor-authentication
 - MFA docs: https://docs.spring.io/spring-security/reference/servlet/authentication/mfa.html

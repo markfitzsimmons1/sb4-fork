@@ -78,7 +78,7 @@ public class GreetingController {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/ot
+- GitHub: https://github.com/markfitzsimmons1/ot
 - Video: https://www.youtube.com/watch?v=6_Y41z7OIv8
 - Blog: https://www.danvega.dev/blog/opentelemetry-spring-boot
 - Spring blog: https://spring.io/blog/2025/11/18/opentelemetry-with-spring-boot

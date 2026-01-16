@@ -46,7 +46,7 @@ public class UserService {
 
 ## Resources
 
-- GitHub: https://github.com/danvega/coffeeshop
+- GitHub: https://github.com/markfitzsimmons1/coffeeshop
 - Video: https://youtu.be/QlGnaRoujL8
 - Blog: https://www.danvega.dev/blog/spring-boot-4-null-safety
 - JSpecify: https://jspecify.dev/
